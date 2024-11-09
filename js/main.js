@@ -273,3 +273,12 @@
 
 
 }());
+
+
+
+const token = localStorage.getItem('logec_token');
+const adminLink = document.getElementById("adminLink");
+if (token) {
+	// Show the element if the token exists
+	adminLink.style.visibility = "visible";
+}

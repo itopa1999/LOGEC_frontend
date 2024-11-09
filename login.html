@@ -37,6 +37,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet"
 	>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+	rel="stylesheet" 
+	crossorigin="anonymous">
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -82,20 +85,19 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<li class="active"><a href="sermons.html">Sermons</a></li>
-							<!-- <li class="has-dropdown">
-								<a href="news.html">News</a>
-								<ul class="dropdown">
-									<li><a href="#">Ministry</a></li>
-									<li><a href="#">Medical Missionary</a></li>
-									<li><a href="#">Country Living</a></li>
-									<li><a href="#">Gospel Workers</a></li>
-								</ul>
-							</li> -->
 							<li><a href="events.html">Events</a></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li><a href="offering.html">Offering</a></li>
-							<li><a href="member.html">Members</a></li>
+							<li class="has-dropdown" id="adminLink">
+								<a href="#!">Admin Link</a>
+								<ul class="dropdown">
+									<li><a href="adminMember.html">Members</a></li>
+									<li><a href="adminQuestion.html">Questions</a></li>
+									<li><a href="adminDonation.html"> Donation</a></li>
+									<li><a href="adminNewMember.html">New Members</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -104,30 +106,33 @@
 		</div>
 	</nav>
 	<div class="container-wrap">
-		<aside id="fh5co-hero">
-			<div class="flexslider">
-				<ul class="slides">
-			   	<li style="background-image: url(images/img_bg_2.jpg);">
-			   		<div class="overlay"></div>
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 text-center slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>Members</h1>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			  	</ul>
-		  	</div>
-		</aside>
 		<div id="fh5co-contact">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Coming Soon</h2>
+					<h2>Login</h2>
 				</div>
+                <form class="login-form">
+					<div class="col-md-12">
+						<div class="form-group">
+							<input name="email" type="email" class="form-control" placeholder="Email" required>
+						</div>
+					</div>
+						
+	
+					<div class="col-md-12">
+					<div class="form-group">
+						<input name="password" type="password" class="form-control" placeholder="Password" required>
+					</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<button class="btn btn-primary btn-modify" type="submit"><span class="" id="submit-text"> Login</span> <i class="bi bi-arrow-right"></i>
+							</span> <div id="spinner" class="spi text-white d-none">..... please wait</div></button>
+						</div>
+					</div>
+					</form>
 			</div>
+				
 		</div>
 	</div><!-- END container-wrap -->
 
@@ -184,6 +189,7 @@
 	<script src="js/jquery.countTo.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 
 	</body>
 </html>

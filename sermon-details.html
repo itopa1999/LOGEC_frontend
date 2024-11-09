@@ -37,6 +37,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet"
 	>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+	rel="stylesheet" 
+	crossorigin="anonymous">
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -112,8 +116,8 @@
 			   			<div class="row">
 				   			<div class="col-md-6 col-md-offset-3 text-center slider-text">
 				   				<div class="slider-text-inner">
-				   					<h1>Listen, Read and</h1>
-										<h2 >Get Inspired with  Our Sermons</h2>
+				   					<h1 id="title-h">Listen, Read and</h1>
+										<h2 id="precher-h">Get Inspired with  Our Sermons</h2>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -122,25 +126,185 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		<div id="fh5co-sermon">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Inspiring Sermons</h2>
-					<p>Our sermons at Light of Glory Evangelical Church are a source of encouragement and spiritual nourishment. We invite you to listen, read and reflect on the teachings that bring us closer to God and strengthen our community.</p>
-				</div>
-				
-			</div>
-				<div class="container-fluid">
-					<div class="col-md-12">
-					<input type="text" class="form-control" id="search" placeholder="search sermon here .....">
-					</div>
-				</div>
 		
-			
-			<div class="row animate-box" id="sermon-container" style="margin-top: 25px;">
+		<div id="fh5co-sermon">
+			<div class="page-title">
+                <div class="container  align-items-right">
+                  <nav class="breadcrumbs">
+                    <ol>
+                      <li><a href="index.html">index</a></li>
+                      <li class="current"><a href="sermons.html">Sermons</a></li>
+                    </ol>
+                  </nav>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-lg-8">
+            <section id="blog-details" class="blog-details section">
+    
+                <article class="article">
+    
+                    <h2 class="title" id="title-c"></h2>
+    
+                    <div class="meta-top">
+                    <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person" id="precher-c"></i> </li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock" id="date-c"></i></time></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-book" id="text-c"></i></li>
+                    </ul>
+                    </div><!-- End meta top -->
+    
+                    <div class="content" >
+                    <p style="white-space: pre-wrap;" id="content-c">
+                        
+                    </p>
+					<span id="adminAction">
+					<button type="button" id="adminUpdate" class="btn btn-primary">
+						<i class="bi bi-pencil-square"></i>
+						Update
+					</button>
+					
+					<button type="button" id="adminDelete" class="btn btn-danger">
+						<i class="bi bi-trash"></i>
+						Delete
+					</button>
+					</span>
+    
+                    </div><!-- End post content -->
 
-			</div>
-			<div id="pagination-container" class="text-center mt-3"></div>
+    
+                </article>
+    
+            </section>
+
+				<section id="update-sermon" class="comment-form section">
+	
+					<form class="updateSermon-form">
+	  
+					  <h4>Update Sermon</h4>
+					  <div class="row">
+						<div class="col-md-6 form-group">
+						  <input name="title" id="title-i" type="text" class="form-control" placeholder="title*" required>
+						</div>
+						<div class="col-md-6 form-group">
+						  <input name="bible_text" id="text-i" type="text" class="form-control" placeholder="bible text*" required>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col form-group">
+						  <textarea name="sermon" id="sermon-i" class="form-control" placeholder="Sermon*" required></textarea>
+						</div>
+					  </div>
+					  <input type="hidden" name="preacher" id="preacher-i">
+	  
+					  <div class="text-center">
+						  <button class="btn btn-primary" type="submit"><span class="" id="submit-text1">Update Sermon <i class="bi bi-arrow-right"></i>
+						  </span> <div id="spinner1" class="spi text-white d-none">..... please wait</div></button>
+						</div>
+  
+						  
+	  
+					</form>
+	  
+				</section>
+			
+
+
+            <section id="blog-comments" class="blog-comments section">
+    
+                  <h4 class="comments-count" id="comments-count"></h4>
+					<div id="comment-container">
+                 
+					</div>
+              </section><!-- /Blog Comments Section -->
+			  <section id="comment-form" class="comment-form section">
+	
+				  <form class="addComment-form">
+	
+					<h4>Post Comment</h4>
+					<p>Your email address will not be published. Required fields are marked * </p>
+					<div class="row">
+					  <div class="col-md-6 form-group">
+						<input name="name" type="text" class="form-control" placeholder="Your Name*" required>
+					  </div>
+					  <div class="col-md-6 form-group">
+						<input name="email" type="email" class="form-control" placeholder="Your Email*" required>
+					  </div>
+					</div>
+					<div class="row">
+					  <div class="col form-group">
+						<textarea name="comment" class="form-control" placeholder="Your Comment*" required></textarea>
+					  </div>
+					</div>
+	
+					<div class="text-center">
+						<button class="btn btn-primary" type="submit"><span class="" id="submit-text">Post Comment <i class="bi bi-arrow-right"></i>
+						</span> <div id="spinner" class="spi text-white d-none">..... please wait</div></button>
+					</div>
+
+						
+	
+				  </form>
+	
+			  </section>
+    
+           
+             
+			  
+    
+        </div>
+        <div class="col-lg-4 sidebar">
+
+          <div class="widgets-container">
+
+            <!-- Blog Author Widget -->
+            <div class="blog-author-widget widget-item">
+
+                <div class="d-flex flex-column align-items-center">
+                  <div class="d-flex align-items-center w-100">
+                    <div>
+                      <h4 id="precher-t"></h4>
+                      <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <p>
+                    About Preacher here
+                  </p>
+  
+                </div>
+  
+              </div><!--/Blog Author Widget -->
+
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+
+              <h3 class="widget-title">Search Sermon</h3>
+              <form >
+                <input type="text" id="search" placeholder="Search sermons...">
+              </form>
+
+            </div><!--/Search Widget -->
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+
+              <h3 class="widget-title">Recent Posts</h3>
+            <div id="sermon-container">
+           
+            </div>
+
+
+            </div><!--/Recent Posts Widget -->
+
+          </div>
+
+        </div>
+        </div>
+
 		</div>
 		<div id="fh5co-counter" class="fh5co-counters fh5co-light-grey">
 			<div class="row">
@@ -148,7 +312,6 @@
 					<p>Join us as we explore the teachings of Christ! In a community filled with love and support, we come together to grow in faith, uplift one another, and share the light of His message.</p>
 					</div>
 			</div>
-			
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="row">
@@ -203,8 +366,11 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-	
-	<!-- jQuery -->
+
+	  
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+	crossorigin="anonymous"></script>
+<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
@@ -223,7 +389,7 @@
 	<script src="js/jquery.countTo.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
-	<script src="js/sermons.js"></script>
+	<script src="js/sermon-details.js"></script>
 
 	</body>
 </html>
