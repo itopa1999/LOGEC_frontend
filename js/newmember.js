@@ -3,14 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const paginationContainer = document.getElementById('pagination-container');
     const searchInput = document.getElementById("search");
     const branchOption = document.getElementById("branch");
-    const departmentOption = document.getElementById("department");
     const branchSelect = document.getElementById('branch');
-    const departmentSelect = document.getElementById('department');
     let currentPage = 1;
     const itemsPerPage = 15;
     let currentSearchQuery = '';
     formBranch = document.getElementById('member-branch')
-    formDepartment = document.getElementById('member-department')
 
     const token = localStorage.getItem('logec_token');
     if (!token) {
@@ -28,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }).then(response => response.ok ? response.json() : Promise.reject(response))
     .then(data => {
         branchSelect.innerHTML = '<option value="">--- filter by Branch ---</option>';
-        departmentSelect.innerHTML = '<option value="">--- filter by Department ---</option>';
         formBranch.innerHTML = '<option value="">--- select Branch ---</option>';
-        formDepartment.innerHTML = '<option value="">--- select Department ---</option>';
 
         // Populate branch options
         data.branches.forEach(branch => {
@@ -46,26 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
             option.textContent = branch;
             formBranch.appendChild(option);
         });
-
-        // Populate department options
-        data.departments.forEach(department => {
-            const option = document.createElement('option');
-            option.value = department;
-            option.textContent = department;
-            departmentSelect.appendChild(option);
-        });
-
-        data.departments.forEach(department => {
-            const option = document.createElement('option');
-            option.value = department;
-            option.textContent = department;
-            formDepartment.appendChild(option);
-        });
     })
     .catch(error => console.error("Error fetching branches and departments:", error));
 
     function fetchMember(page, query = '') {
-        const url = `http://127.0.0.1:8000/logec/api/list/members/?page=${page}&search=${query}`;
+        const url = `http://127.0.0.1:8000/logec/api/list/new/members/?page=${page}&search=${query}`;
 
         fetch(url, {
             method: 'GET',
@@ -119,13 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for search and filters
     searchInput.addEventListener('input', updateSearchQuery);
     branchOption.addEventListener('change', updateSearchQuery);
-    departmentOption.addEventListener('change', updateSearchQuery);
 
     function updateSearchQuery() {
         const branch = branchOption.value;
-        const department = departmentOption.value;
         const search = searchInput.value;
-        currentSearchQuery = `${search}${branch ? `&branch=${branch}` : ''}${department ? `&department=${department}` : ''}`;
+        currentSearchQuery = `${search}${branch ? `&branch=${branch}` : ''}`;
         currentPage = 1;
         fetchMember(currentPage, currentSearchQuery);
     }
@@ -146,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h4>${member.id}. <a href="#!" class="details-btn" id="details-${member.id}">${member.name}</a></h4>
                         <span datetime="2020-01-01">${member.phone} | </span>
                         <span datetime="2020-01-01">${member.branch} | </span>
-                        <span datetime="2020-01-01">${member.gender} | </span>
                     </div>
                 </div>`;
                 memberContainer.innerHTML += rowHtml;
@@ -162,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function processDetails(memberId) {
-        fetch(`http://127.0.0.1:8000/logec/api/members/details/${memberId}/`, {
+        fetch(`http://127.0.0.1:8000/logec/api/new/members/details/${memberId}/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -176,9 +153,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('member-email').value = data.email || '';
                     document.getElementById('member-phone').value = data.phone || '';
                     document.getElementById('member-address').value = data.address || '';
-                    document.getElementById('member-gender').value = data.gender || 'null';
+                    document.getElementById('member-office-address').value = data.office_address || 'null';
+                    document.getElementById('member-is_single-true').checked = data.is_single === true;
+                    document.getElementById('member-is_single-false').checked = data.is_single === false;
+
+                    document.getElementById('member-is_member-true').checked = data.is_member === true;
+                    document.getElementById('member-is_member-false').checked = data.is_member === false;
+                    document.getElementById('member-age').value = data.age || 'null';
                     formBranch.value = data.branch || 'null';
-                    formDepartment.value = data.department || 'null';
                     const rawDate = data.date || null;
                     if (rawDate) {
                         const dateObj = new Date(rawDate);
@@ -206,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
         }
 
+
         document.getElementById('submit-button').addEventListener('click', () => {
             const memberId = document.getElementById('member-id').value;
             const memberData = {
@@ -213,9 +196,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 email: document.getElementById('member-email').value,
                 phone: document.getElementById('member-phone').value,
                 address: document.getElementById('member-address').value,
-                gender: document.getElementById('member-gender').value,
+                gender: document.getElementById('member-office-address').value,
                 branch: document.getElementById('member-branch').value,
-                department: document.getElementById('member-department').value,
+                age: document.getElementById('member-age').value,
+                is_single:document.getElementById('member-is_single-true').checked,
+                is_member:document.getElementById('member-is_member-true').checked,
             };  
             const spinner = document.getElementById('spinner');
             const submitText = document.getElementById('submit-text');
@@ -223,25 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             spinner.classList.remove('d-none');
             submitText.classList.add('d-none');
 
-            if (memberId) {
-                fetch(`http://127.0.0.1:8000/logec/api/update/member/${memberId}/`, {
-                    method: 'PUT',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(memberData)
-                }).then(response => {
-                    spinner.classList.add('d-none');
-                    submitText.classList.remove('d-none');
-                    if (response.ok) {
-                        alert('Member updated successfully!');
-                    } else {
-                        alert('Error updating member.');
-                    }
-                });
-            } else {
-                fetch('http://127.0.0.1:8000/logec/api/register/member/', {
+            if (!memberId) {
+                fetch('http://127.0.0.1:8000/logec/api/register/new/member/', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -252,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     spinner.classList.add('d-none');
                     submitText.classList.remove('d-none');
                     if (response.ok) {
-                        alert('Member created successfully!');
+                        alert('New Member created successfully!');
                     } else {
                         alert('Error creating member.');
                     }
@@ -260,10 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-    
-
-
-
-    // Initial load
+        // Initial load
     fetchMember(currentPage);
-});
+
+
+
+})

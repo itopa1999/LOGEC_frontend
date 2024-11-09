@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         }).then(data => {
-            console.log(data)
+            
             if (data) {
                 displaySermonDetails(data.sermon);
                 displayRecentSermon(data.recent_sermons);
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sermons.forEach(sermon => {
                 const rowHtml = `
                 <div class="post-item">
-                    <img src="images/sermon-2.jpg" alt="" class="flex-shrink-0">
+                    <img loading="lazy" src="images/sermon-2.jpg" alt="" class="flex-shrink-0">
                     <div>
                     <h4><a href="sermon-details.html?id=${sermon.id}">${sermon.title}</a></h4>
                     <time datetime="2020-01-01">${sermon.posted_at}</time>

@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(response => {
             if (response.status===200) {
                 response.json().then(data => {
-                    console.log(data)
+                    
                     document.getElementById('question-name').textContent = data.name || 'null';
                     document.getElementById('question-email').textContent = data.email || 'null';
                     document.getElementById('question-phone').textContent = data.phone || 'null';

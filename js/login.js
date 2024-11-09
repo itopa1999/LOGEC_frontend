@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (response.status===200) {
                 return response.json().then(data => {
-                    console.log(data)
+                    
                     alert("login successful")
                     localStorage.setItem('logec_token', data.access);
                     window.location.href = 'index.html';
