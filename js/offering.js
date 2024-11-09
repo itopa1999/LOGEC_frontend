@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitText.classList.add('d-none');
 
         // Submit the form data to the backend
-        fetch(`http://127.0.0.1:8000/logec/api/paystack/deposit/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/paystack/deposit/`, {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {

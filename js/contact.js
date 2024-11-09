@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitText.classList.add('d-none');
 
         
-        fetch(`http://127.0.0.1:8000/logec/api/create/question/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/create/question/`, {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {

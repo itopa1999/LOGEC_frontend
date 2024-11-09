@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    fetch('http://127.0.0.1:8000/logec/api/get/index/', {
+    fetch('https://lucky1999.pythonanywhere.com/logec/api/get/index/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

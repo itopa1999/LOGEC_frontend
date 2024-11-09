@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSearchQuery = '';
 
     function fetchSermons(page, query = '') {
-        const url = `http://127.0.0.1:8000/logec/api/list/sermons/?page=${page}&search=${query}`;
+        const url = `https://lucky1999.pythonanywhere.com/logec/api/list/sermons/?page=${page}&search=${query}`;
         
         fetch(url, {
             method: 'GET',

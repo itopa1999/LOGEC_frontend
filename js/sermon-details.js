@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const sermonId = urlParams.get('id');
     function fetchSermons(query) {
-        fetch(`http://127.0.0.1:8000/logec/api/get/sermon/${sermonId}/?search=${encodeURIComponent(query)}`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/get/sermon/${sermonId}/?search=${encodeURIComponent(query)}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         spinner.classList.remove('d-none');
         submitText.classList.add('d-none');
-        fetch(`http://127.0.0.1:8000/logec/api/comment/sermon/${sermonId}/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/comment/sermon/${sermonId}/`, {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const confirmDelete = confirm("Are you sure you want to delete this comment?");
         if (!confirmDelete) return;
-        fetch(`http://127.0.0.1:8000/logec/api/comment/sermon/${commentId}/delete/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/comment/sermon/${commentId}/delete/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const confirmDelete = confirm("Are you sure you want to delete this sermon?");
         if (!confirmDelete) return;
-        fetch(`http://127.0.0.1:8000/logec/api/delete/sermon/${sermonId}/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/delete/sermon/${sermonId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         spinner.classList.remove('d-none');
         submitText.classList.add('d-none');
         
-        fetch(`http://127.0.0.1:8000/logec/api/update/sermon/${sermonId}/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/update/sermon/${sermonId}/`, {
             method: 'PUT',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {

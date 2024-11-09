@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchOfferings(page, query = '') {
-        const url = `http://127.0.0.1:8000/logec/api/list/donation/?page=${page}&search=${query}`;
+        const url = `https://lucky1999.pythonanywhere.com/logec/api/list/donation/?page=${page}&search=${query}`;
 
         fetch(url, {
             method: 'GET',
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function processDetails(offeringId) {
-        fetch(`http://127.0.0.1:8000/logec/api/get/donation/${offeringId}/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/get/donation/${offeringId}/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

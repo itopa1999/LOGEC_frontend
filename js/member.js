@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Fetch branches and departments
-    fetch('http://127.0.0.1:8000/logec/api/list/department/branch/', {
+    fetch('https://lucky1999.pythonanywhere.com/logec/api/list/department/branch/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error("Error fetching branches and departments:", error));
 
     function fetchMember(page, query = '') {
-        const url = `http://127.0.0.1:8000/logec/api/list/members/?page=${page}&search=${query}`;
+        const url = `https://lucky1999.pythonanywhere.com/logec/api/list/members/?page=${page}&search=${query}`;
 
         fetch(url, {
             method: 'GET',
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function processDetails(memberId) {
-        fetch(`http://127.0.0.1:8000/logec/api/members/details/${memberId}/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/members/details/${memberId}/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitText.classList.add('d-none');
 
             if (memberId) {
-                fetch(`http://127.0.0.1:8000/logec/api/update/member/${memberId}/`, {
+                fetch(`https://lucky1999.pythonanywhere.com/logec/api/update/member/${memberId}/`, {
                     method: 'PUT',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             } else {
-                fetch('http://127.0.0.1:8000/logec/api/register/member/', {
+                fetch('https://lucky1999.pythonanywhere.com/logec/api/register/member/', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',

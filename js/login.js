@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginText.classList.add('d-none');
 
         // Send the login request
-        fetch('http://127.0.0.1:8000/admins/api/login/', {
+        fetch('https://lucky1999.pythonanywhere.com/admins/api/login/', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {
