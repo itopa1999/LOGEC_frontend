@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
+            const errorMessage = document.createElement('p');
+            errorMessage.classList.add('text-center', 'text-danger');
+            errorMessage.style.fontWeight = 'bold';
+            errorMessage.style.fontSize = '24px';
+            errorMessage.textContent = 'Sermon is not currently available. Please try again later.';
+            sermonContainer.appendChild(errorMessage);
         });
     }
 

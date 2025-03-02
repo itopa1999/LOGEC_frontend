@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayOfferings(data.results || []);
             updatePagination(data);
         })
-        .catch(error => console.error("Error fetching members:", error));
+        .catch(error => alert("Error fetching Donations:", error));
     }
 
     function updatePagination(data) {

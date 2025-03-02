@@ -12,11 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const formData = new FormData(form);
-        const spinner = document.getElementById('spinner');
-        const loginText = document.getElementById('submit-text');
-
-        spinner.classList.remove('d-none');
-        loginText.classList.add('d-none');
 
         // Send the login request
         fetch('https://lucky1999.pythonanywhere.com/admins/api/login/', {
@@ -27,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
-            spinner.classList.add('d-none');
-            loginText.classList.remove('d-none');
             
             if (response.status===200) {
                 return response.json().then(data => {
@@ -46,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('An error occurred. Please try again later.');
             }
         }).catch(error => {
-                spinner.classList.add('d-none');
-                loginText.classList.remove('d-none');
                 console.error('Server is not responding. Please try again later.');
         });
         

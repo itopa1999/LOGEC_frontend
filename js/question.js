@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayQuestions(data.results || []);
             updatePagination(data);
         })
-        .catch(error => console.error("Error fetching members:", error));
+        .catch(error => alert("Error fetching questions:", error));
     }
 
     function updatePagination(data) {

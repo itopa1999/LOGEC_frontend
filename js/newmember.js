@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayMember(data.results || []);
             updatePagination(data);
         })
-        .catch(error => console.error("Error fetching members:", error));
+        .catch(error => alert("Error fetching new members:", error));
     }
 
     function updatePagination(data) {
@@ -160,7 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('member-is_member-true').checked = data.is_member === true;
                     document.getElementById('member-is_member-false').checked = data.is_member === false;
                     document.getElementById('member-age').value = data.age || 'null';
+                    document.getElementById('member-gender-male').checked = data.gender === 'Male';
+                    document.getElementById('member-gender-female').checked = data.gender === 'Female';
                     formBranch.value = data.branch || 'null';
+                    
                     const rawDate = data.date || null;
                     if (rawDate) {
                         const dateObj = new Date(rawDate);
@@ -196,17 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 email: document.getElementById('member-email').value,
                 phone: document.getElementById('member-phone').value,
                 address: document.getElementById('member-address').value,
-                gender: document.getElementById('member-office-address').value,
+                office_address: document.getElementById('member-office-address').value,
                 branch: document.getElementById('member-branch').value,
                 age: document.getElementById('member-age').value,
                 is_single:document.getElementById('member-is_single-true').checked,
                 is_member:document.getElementById('member-is_member-true').checked,
+                gender: document.getElementById('member-gender-male').checked ? 'Male' :
+                        document.getElementById('member-gender-female').checked ? 'Female' : null
             };  
-            const spinner = document.getElementById('spinner');
-            const submitText = document.getElementById('submit-text');
-    
-            spinner.classList.remove('d-none');
-            submitText.classList.add('d-none');
 
             if (!memberId) {
                 fetch('https://lucky1999.pythonanywhere.com/logec/api/register/new/member/', {
@@ -217,12 +217,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(memberData)
                 }).then(response => {
-                    spinner.classList.add('d-none');
-                    submitText.classList.remove('d-none');
                     if (response.ok) {
+                        fetchMember(currentPage);
                         alert('New Member created successfully!');
                     } else {
-                        alert('Error creating member.');
+                        alert('Error creating member.', response);
                     }
                 });
             }

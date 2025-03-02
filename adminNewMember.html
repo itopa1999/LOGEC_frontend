@@ -84,10 +84,10 @@
 					<div class="col-md-12 col-md-offset-0 text-center menu-1">
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="sermons.html">Sermons</a></li>
-							<li><a href="events.html">Events</a></li>
 							<li><a href="about.html">About</a></li>
+							<li><a href="events.html">Events</a></li>
 							<li><a href="contact.html">Contact</a></li>
+							<li><a href="sermons.html">Sermons</a></li>
 							<li><a href="offering.html">Offering</a></li>
 							<li><a href="gallery.html">Gallery</a></li>
 							<li class="has-dropdown" id="adminLink">
@@ -97,6 +97,8 @@
 									<li><a href="adminQuestion.html">Questions</a></li>
 									<li><a href="adminDonation.html"> Donation</a></li>
 									<li><a href="adminNewMember.html">New Members</a></li>
+									<li><a href="adminAddSermon.html">Add Sermon</a></li>
+									<li><a href="#!" id="admin-logout">Logout</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -110,7 +112,7 @@
 		<div id="fh5co-contact">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Member Lists</h2>
+					<h2>New Member Lists</h2>
 				</div>
 			</div>
 			<div class="container-fluid">
@@ -129,7 +131,7 @@
 				
 			</div>
 			<div class="row">
-            <div class="recent-posts-widget widget-item mt-3 col-md-7">
+            <div class="recent-posts-widget widget-item mt-3 col-md-5">
 				<h3 class="widget-title">  <span id="member-count"></span> New Members </h3>
 			  <div id="member-container">
 			 
@@ -137,7 +139,7 @@
   
 			  <div id="pagination-container" class="text-center mt-3"></div>
 			  </div>
-			  <div class="search-widget widget-item mt-3 col-lg-5">
+			  <div class="search-widget widget-item mt-3 col-lg-7">
 				<h3 class="widget-title">New Member Details / Add New Member</h3>
 				<div class="member-details-card">
 					<ul class="member-details-list">
@@ -153,6 +155,11 @@
 								<option value=""></option>
 							</select>
 						</li>
+						<li>
+                            <strong>Gender:</strong>
+                            <label><input type="radio" name="is_male" id="member-gender-male" value="Male"> Male</label>
+                            <label><input type="radio" name="is_female" id="member-gender-female" value="Female"> Female</label>
+                          </li>
                         <li>
                             <strong>Single:</strong>
                             <label><input type="radio" name="is_single" id="member-is_single-true" value="true"> Yes</label>
@@ -168,8 +175,7 @@
 						<li><strong>Age:</strong> <input type="number" id="member-age" class="form-control" value=""></li>
 						<li><strong>Dated:</strong> <span id="member-date">null</span></li>
 					</ul>
-					<button class="btn btn-primary" id="submit-button" type="button"><span class="" id="submit-text">Submit<i class="bi bi-arrow-right"></i>
-					</span> <div id="spinner" class="spi text-white d-none">..... please wait</div></button>
+					<button class="btn btn-primary" id="submit-button" type="button">Submit<i class="bi bi-arrow-right"></i></button>
 				</div>
 				
 			</div>
@@ -201,7 +207,7 @@
 				<div class="col-md-12 text-center">
 					<p>
 						<small class="block">&copy; 2024.</small> 
-						<small class="block">Designed by <a href="#" target="_blank">StarliteCode</a></small>
+						<small class="block">Designed by <a href="https://wa.me/2348064160380" target="_blank">StarliteCode</a></small>
 					</p>
 				</div>
 			</div>

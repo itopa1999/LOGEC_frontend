@@ -29,11 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Show loading spinner and hide submit text
-        const spinner = document.getElementById('spinner');
-        const submitText = document.getElementById('submit-text');
-        spinner.classList.remove('d-none');
-        submitText.classList.add('d-none');
 
         // Submit the form data to the backend
         fetch(`https://lucky1999.pythonanywhere.com/logec/api/paystack/deposit/`, {
@@ -44,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
-            spinner.classList.add('d-none');
-            submitText.classList.remove('d-none');
             console.log(response);
             if (response.status === 200) {
                 return response.json().then(data => {
@@ -61,9 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            spinner.classList.add('d-none');
-            submitText.classList.remove('d-none');
-            console.error('Error:', error);
             alert('An error occurred. Please try again later.');
         });
     });

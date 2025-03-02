@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayMember(data.results || []);
             updatePagination(data);
         })
-        .catch(error => console.error("Error fetching members:", error));
+        .catch(error => alert("Error fetching members:", error));
     }
 
     function updatePagination(data) {
@@ -217,11 +217,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 branch: document.getElementById('member-branch').value,
                 department: document.getElementById('member-department').value,
             };  
-            const spinner = document.getElementById('spinner');
-            const submitText = document.getElementById('submit-text');
-    
-            spinner.classList.remove('d-none');
-            submitText.classList.add('d-none');
 
             if (memberId) {
                 fetch(`https://lucky1999.pythonanywhere.com/logec/api/update/member/${memberId}/`, {
@@ -232,10 +227,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(memberData)
                 }).then(response => {
-                    spinner.classList.add('d-none');
-                    submitText.classList.remove('d-none');
                     if (response.ok) {
                         alert('Member updated successfully!');
+                        fetchMember(currentPage)
                     } else {
                         alert('Error updating member.');
                     }
@@ -249,10 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(memberData)
                 }).then(response => {
-                    spinner.classList.add('d-none');
-                    submitText.classList.remove('d-none');
                     if (response.ok) {
                         alert('Member created successfully!');
+                        fetchMember(currentPage)
                     } else {
                         alert('Error creating member.');
                     }

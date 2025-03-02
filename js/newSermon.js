@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    document.querySelector('.addContact-form').addEventListener('submit', function(event) {
+    document.querySelector('.addSermon-form').addEventListener('submit', function(event) {
         event.preventDefault();
         const form = this;
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         
-        fetch(`https://lucky1999.pythonanywhere.com/logec/api/create/question/`, {
+        fetch(`https://lucky1999.pythonanywhere.com/logec/api/create/sermon/`, {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {            
             if (response.status===201) {
                 return response.json().then(data => {
-                    document.querySelector('.addContact-form').reset();
+                    document.querySelector('.addSermon-form').reset();
                     alert(data.message)
                 });
 

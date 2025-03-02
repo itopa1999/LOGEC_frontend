@@ -282,3 +282,9 @@ if (token) {
 	// Show the element if the token exists
 	adminLink.style.visibility = "visible";
 }
+
+document.getElementById('admin-logout').addEventListener('click', function() {
+	localStorage.removeItem('logec_token');
+	alert('You have been logged out.');
+	window.location.href = 'login.html';
+});

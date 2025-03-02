@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            throw new Error("Error fetching sermon details:", error);
+            alert("Error fetching sermon details:", error);
         });
     }
 
@@ -154,11 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const spinner = document.getElementById('spinner');
-        const submitText = document.getElementById('submit-text');
-
-        spinner.classList.remove('d-none');
-        submitText.classList.add('d-none');
         fetch(`https://lucky1999.pythonanywhere.com/logec/api/comment/sermon/${sermonId}/`, {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
@@ -167,13 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
-            spinner.classList.add('d-none');
-            submitText.classList.remove('d-none');
             
             if (response.status===201) {
                 return response.json().then(data => {
                     document.querySelector('.addComment-form').reset();
                     alert(data.message)
+                    fetchSermons()
                 });
 
             } else {
@@ -202,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(response => {
             if (response.status===204) {
                 alert("Deleted successfully");
+                fetchSermons()
             } else {
                 return response.json().then(data => {
                 alert(data.detail || 'Authorised or invalid entry')
@@ -228,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(response => {
             if (response.status===204) {
                 alert("Deleted successfully");
+                window.location.href = 'sermons.html';
             } else {
                 return response.json().then(data => {
                 alert(data.detail || 'Authorised or invalid entry')
@@ -262,11 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const spinner = document.getElementById('spinner1');
-        const submitText = document.getElementById('submit-text1');
-
-        spinner.classList.remove('d-none');
-        submitText.classList.add('d-none');
         
         fetch(`https://lucky1999.pythonanywhere.com/logec/api/update/sermon/${sermonId}/`, {
             method: 'PUT',
@@ -277,12 +268,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
-            spinner.classList.add('d-none');
-            submitText.classList.remove('d-none');
             
             if (response.status===200) {
                 return response.json().then(data => {
                     alert('Updated successfully')
+                    fetchSermons()
+                    const sermon = document.getElementById("update-sermon");
+                    sermon.style.display = "none";
                 });
 
             } else {
@@ -291,8 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             }
         }).catch(error => {
-            spinner.classList.add('d-none');
-            submitText.classList.remove('d-none');
             alert('An error occurred. Please try again later.');
             console.error(error);
         });
