@@ -28,7 +28,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet"
 	>
-	
+	<link rel="icon" href="images/logo.png" type="image/png">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -64,7 +64,10 @@
 			<div class="top-menu">
 				<div class="row">
 					<div class="col-md-12 col-offset-0 text-center">
-						<div id="fh5co-logo"><a href="index.html">Light of Glory Evangelical Church</a></div>
+							<div id="fh5co-logo">
+							<img src="images/logo.png" alt="LOGEC Logo" style="max-height: 80px; margin-bottom: 10px;"><br>
+							<a href="index.html">Light of Glory Evangelical Church</a>
+						</div>
 					</div>
 					<div class="col-md-12 col-md-offset-0 text-center menu-1">
 						<ul>
@@ -209,7 +212,7 @@
 					<div class="services">
 						<a href="#!" class="img-holder"><img class="img-responsive" loading="lazy" src="images/bible-reading.jpg" alt="#"></a>
 						<div class="desc">
-							<h3>Tuesday: Biblical Counseling <br> 5pm-6pm</h3>
+							<h3>Tuesday: Online Bible Study <br> 5pm-6pm</h3>
 							<p>Join us every Tuesday for an hour of Biblical Counseling, where we explore God’s Word together and find answers to life’s challenges.</p>
 														
 						</div>
@@ -367,6 +370,31 @@
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<div id="fh5co-events">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+					<h2>Church Gallery</h2>
+					<p>Some f our wonderful moments with God</p>
+				</div>
+			</div>
+
+			<div class="row g-3">
+				<script>
+					for (let i = 36; i >= 25; i--){
+						document.write(`
+							<div class="col-6 col-md-4">
+								<div class="photo-card">
+									<img src="images/Gallery/image_${i}.jpeg" loading="lazy" alt="Photo ${i}" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/Gallery/image_${i}.jpeg')">
+								</div>
+							</div>
+						`);
+					}
+				</script>
+	</div>
+	<center style="padding: 10px;"><a href="gallery.html" id="view-more" class="btn btn-primary">View More</a></center>
+
 		</div>
 
 	</div><!-- END container-wrap -->

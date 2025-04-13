@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
 
         // Send the login request
-        fetch('https://lucky1999.pythonanywhere.com/admins/api/login/', {
+        fetch('http://127.0.0.1:8000/admins/api/login/', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData.entries())), // Convert form data to JSON
             headers: {
